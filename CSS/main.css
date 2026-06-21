@@ -1,0 +1,20 @@
+/* body {  - селектор
+    color: red;  - свойство
+} */
+
+.test-text {  
+    color: rgb(255, 0, 255);
+}
+
+.wrapper {
+    position: relative;
+}
+
+.first_block {  
+    position: relative;
+    right: 200px;
+    left: 500px;
+    display: inline-block;
+    padding: 10px;
+    background: rgb(0, 255, 255);
+}
