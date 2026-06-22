@@ -18,3 +18,24 @@
     padding: 10px;
     background: rgb(0, 255, 255);
 }
+
+.Ndref {
+    color: rgb(0, 0, 0);
+    
+}
+
+.Ndref:hover {
+    color: red;
+    text-decoration: none;
+    /* cursor: url(""); */
+    /* text-decoration-color: blue; раскраска линии */
+}
+
+.Ndref:visited { 
+    color: grey;
+}
+
+#Some_id::after {  
+    content: "20";
+    color: darkblue;
+}
