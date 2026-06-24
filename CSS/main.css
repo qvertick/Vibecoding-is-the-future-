@@ -97,3 +97,41 @@ body {
     border-radius: 5px;
     font-size: 35px;
 }
+
+.block {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    background: red;
+}
+
+#first {
+    float: left;
+    text-align: center; 
+    font-size: 60px;
+    text-align: center;
+    line-height: 200px;
+}
+
+#second {
+    float: right;
+    background-color: blue;
+    font-size: 60px;
+    text-align: center;
+    line-height: 200px;
+}
+
+#nev {
+    list-style: none;
+    display: block;
+    float: left;
+    margin: 2px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#nev li {
+    display: inline;
+    background: #b6b6b6;
+    
+}
