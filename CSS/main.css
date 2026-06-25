@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Общие сбросы и шрифты */
 * {
     margin: 0;
@@ -150,4 +151,158 @@ body {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+=======
+/* Общие сбросы и шрифты */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #8d8d8d, #b5b5b5);
+    color: #ffffff;
+    min-height: 200vh;
+}
+
+/* ФИКСИРОВАННАЯ ШАПКА */
+#header {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Логотип */
+.header-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-left: 40px;
+    gap: 10px;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* НАВИГАЦИЯ И ВЫПАДАЮЩИЙ СПИСОК */
+.header-nav {
+    position: relative;
+}
+
+.article-dropdown {
+    position: relative;
+}
+
+/* Кнопка "Статьи" */
+.article-summary {
+    list-style: none; /* Убираем стандартную стрелочку details */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: background 0.3s ease, opacity 0.5s ease;
+    opacity: 0.8;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.article-summary::-webkit-details-marker {
+    display: none; /* Убираем стрелочку в Safari */
+}
+
+.article-summary:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Поворот стрелочки при открытии */
+.article-dropdown[open] .article-arrow {
+    transform: rotate(180deg);
+}
+
+.article-arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* Список статей (выпадает плавно и не двигает шапку) */
+.article-list {
+    position: absolute; /* Вырываем из потока, чтобы не ломать высоту хедера */
+    top: calc(100% + 10px);
+    right: 0;
+    width: 180px;
+    background: #303030;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 10px 30px rgba(41, 41, 41, 0.5);
+    /* Более плавная анимация появления */
+    animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Ссылки внутри списка */
+.header-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #aaaaaa;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: color 0.3s ease, background 0.3s ease;
+}
+
+.list-icon {
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+/* Ховер на ссылки в списке */
+.header-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Отступ для остального контента страницы */
+.page-wrapper {
+    padding: 40px;
+}
+
+/* Анимация плавного появления менюшки */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+>>>>>>> 4f61b8ef65df0649eb660b5b8485a8e7929152bc
 }
