@@ -1,5 +1,11 @@
-<<<<<<< HEAD
-/* Общие сбросы и шрифты */
+a[target="_blank"]::after {
+    content: ' ↗';
+    font-size: 0.8em;       /* Делает стрелочку чуть меньше основного текста */
+    color: gray;            
+    margin-left: 4px;       
+    vertical-align: super;  
+}
+/* Общие сбросы и базовая настройка */
 * {
     margin: 0;
     padding: 0;
@@ -8,301 +14,137 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #8d8d8d, #b5b5b5);
-    color: #ffffff;
-    min-height: 200vh;
+    /* Светлый фон со скриншота */
+    background-color: #f7f7f7; 
+    color: #1a1a1a;
+    min-height: 200vh; /* Чтобы можно было скроллить и видеть блюр */
 }
 
-/* ФИКСИРОВАННАЯ ШАПКА */
+/* ФИКСИРОВАННАЯ ШАПКА С БЛЮРОМ */
 #header {
     position: sticky;
     top: 0;
     left: 0;
     width: 100%;
-    height: 78px;
+    height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 32px;
-    background: rgba(255, 255, 255, 0.16);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    padding: 0 10%; /* Большие отступы по бокам, как на макете */
+    
+    /* Идеальное прозрачное стекло для светлого фона */
+    background: rgba(247, 247, 247, 0.7); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
     z-index: 1000;
 }
 
-/* Логотип */
-.header-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
-    margin-left: 40px;
-    gap: 10px;
-    font-size: 25px;
-    text-align: center;
-    letter-spacing: 0.5px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-/* НАВИГАЦИЯ И ВЫПАДАЮЩИЙ СПИСОК */
-.header-nav {
-    position: relative;
-}
-
-.article-dropdown {
-    position: relative;
-}
-
-/* Кнопка "Статьи" */
-.article-summary {
-    list-style: none; /* Убираем стандартную стрелочку details */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: background 0.3s ease, opacity 0.5s ease;
-    opacity: 0.8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.article-summary::-webkit-details-marker {
-    display: none; /* Убираем стрелочку в Safari */
-}
-
-.article-summary:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Поворот стрелочки при открытии */
-.article-dropdown[open] .article-arrow {
-    transform: rotate(180deg);
-}
-
-.article-arrow {
-    font-size: 18px;
-    transition: transform 0.3s ease;
-}
-
-/* Список статей (выпадает плавно и не двигает шапку) */
-.article-list {
-    position: absolute; /* Вырываем из потока, чтобы не ломать высоту хедера */
-    top: calc(100% + 10px);
-    right: 0;
-    width: 180px;
-    background: #303030;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    box-shadow: 0 10px 30px rgba(41, 41, 41, 0.5);
-    /* Более плавная анимация появления */
-    animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Ссылки внутри списка */
-.header-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #aaaaaa;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    transition: color 0.3s ease, background 0.3s ease;
-}
-
-.list-icon {
+/* Логотип в шапке */
+.header-logo {
+    font-weight: 700;
     font-size: 16px;
-    opacity: 0.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-/* Ховер на ссылки в списке */
-.header-link:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
+.header-logo span {
+    font-weight: 400;
+    color: #888;
 }
 
-/* Отступ для остального контента страницы */
-.page-wrapper {
-    padding: 40px;
+.header-logo u {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
 }
 
-/* Анимация плавного появления менюшки */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-8px) scale(0.98);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-=======
-/* Общие сбросы и шрифты */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #8d8d8d, #b5b5b5);
-    color: #ffffff;
-    min-height: 200vh;
-}
-
-/* ФИКСИРОВАННАЯ ШАПКА */
-#header {
-    position: sticky;
-    top: 0;
+.header-logo u::after {
+    content: "";
+    position: absolute;
     left: 0;
+    bottom: 0;
     width: 100%;
-    height: 78px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 32px;
-    background: rgba(255, 255, 255, 0.16);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    height: 0.9px;
+    background: currentColor;
+    transform: rotate(-2deg);
+    transform-origin: left center;
 }
 
-/* Логотип */
-.header-title {
+/* Навигация в шапке */
+.header-nav {
+    display: flex;
+    gap: 24px;
+}
+
+.header-nav a {
+    color: #666;
+    text-decoration: none;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.header-nav a:hover {
+    color: #000;
+}
+
+/* СЕКЦИЯ С ОГРОМНЫМ ЗАГОЛОВКОМ */
+.page-wrapper {
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex: 1;
-    margin-left: 40px;
-    gap: 10px;
-    font-size: 25px;
+    padding-top: 100px; /* Отступ от шапки вниз */
+}
+
+.hero-section {
+    max-width: 900px; /* Ограничиваем ширину, чтобы текст красиво ложился в строки */
     text-align: center;
-    letter-spacing: 0.5px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    padding: 0 20px;
 }
 
-/* НАВИГАЦИЯ И ВЫПАДАЮЩИЙ СПИСОК */
-.header-nav {
+/* Огромный жирный заголовок */
+.hero-title {
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: 1.4px;
+    color: #111111;
+    margin-bottom: 32px;
+    font-family: "Saira", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 140;
+    text-transform: none;
+    display: block;
+    transform: scaleX(1.08);
+    transform-origin: center;
+}
+
+/* Линия подчеркивания под "в 10 раз быстрее" */
+.highlight {
     position: relative;
+    white-space: nowrap;
 }
 
-.article-dropdown {
-    position: relative;
+.highlight::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 3px; /* Толщина линии */
+    background-color: #111111; /* Цвет линии в тон тексту */
 }
 
-/* Кнопка "Статьи" */
-.article-summary {
-    list-style: none; /* Убираем стандартную стрелочку details */
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    padding: 10px 16px;
-    border-radius: 8px;
-    transition: background 0.3s ease, opacity 0.5s ease;
-    opacity: 0.8;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.article-summary::-webkit-details-marker {
-    display: none; /* Убираем стрелочку в Safari */
-}
-
-.article-summary:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Поворот стрелочки при открытии */
-.article-dropdown[open] .article-arrow {
-    transform: rotate(180deg);
-}
-
-.article-arrow {
+/* Аккуратный текст описания под заголовком */
+.hero-subtitle {
     font-size: 18px;
-    transition: transform 0.3s ease;
-}
-
-/* Список статей (выпадает плавно и не двигает шапку) */
-.article-list {
-    position: absolute; /* Вырываем из потока, чтобы не ломать высоту хедера */
-    top: calc(100% + 10px);
-    right: 0;
-    width: 180px;
-    background: #303030;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    box-shadow: 0 10px 30px rgba(41, 41, 41, 0.5);
-    /* Более плавная анимация появления */
-    animation: fadeIn 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Ссылки внутри списка */
-.header-link {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #aaaaaa;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    transition: color 0.3s ease, background 0.3s ease;
-}
-
-.list-icon {
-    font-size: 16px;
-    opacity: 0.5;
-}
-
-/* Ховер на ссылки в списке */
-.header-link:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-/* Отступ для остального контента страницы */
-.page-wrapper {
-    padding: 40px;
-}
-
-/* Анимация плавного появления менюшки */
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-8px) scale(0.98);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
->>>>>>> 4f61b8ef65df0649eb660b5b8485a8e7929152bc
+    font-weight: 400;
+    line-height: 1.6;
+    color: #555555;
+    max-width: 720px;
+    margin: 0 auto; /* Центрируем блок с текстом */
 }
