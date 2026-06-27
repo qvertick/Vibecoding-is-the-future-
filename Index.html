@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Базовые метатеги -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Вайбкодинг, Док-ва, Дока, Инфа, Айти, IT, Vibe-coding, Vibe">
+    <meta name="keywords" content="Вайбкодинг, Док-ва, Дока, Инфа, Айти, IT, Vibe-coding, Vibe">
     <title>Док-ва ( Вайбкодинг )</title>
+    
+    <!-- Стили -->
     <link rel="stylesheet" href="CSS/main.css">
-
+    
+    <!-- Фавиконка -->
+    <link rel="icon" id="favicon" href="Img/favicone-black.png" type="image/png">
+    
+    <!-- Шрифты Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     
-    <!-- <link rel="icon" type="image/png" href="png/favicon.png?v=3"> -->
+    <!-- Скрипт адаптивной фавиконки -->
+    <script>
+        const favicon = document.getElementById('favicon');
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+        function handleThemeChange(e) {
+            if (e.matches) {
+                // Тёмная тема системы — показываем белую иконку
+                favicon.href = 'Img/favicone-white.png';
+            } else {
+                // Светлая тема системы — показываем чёрную иконку
+                favicon.href = 'Img/favicone-black.png';
+            }
+        }
+
+        // Проверяем тему при загрузке
+        handleThemeChange(darkModeMediaQuery);
+        
+        // Отслеживаем изменения системной темы
+        darkModeMediaQuery.addEventListener('change', handleThemeChange);
+    </script>
 </head>
 <body>
-
-    <div id="header">
-        <div class="header-logo">
+    <!-- ========================================
+         Шапка сайта
+         ======================================== -->
+    <header id="header">
+        <a href="#" class="header-logo">
             VibeCoding <span>is <u>future?</u></span>
-        </div>
+        </a>
         
         <div class="header-nav">
             <a href="#">для кого</a>
@@ -27,18 +55,183 @@
             <a href="#">Статья 1</a>
             <a href="#">Статья 2</a>
         </div>
-    </div>
+    </header>
 
+    <!-- ========================================
+         Главный экран (Hero)
+         ======================================== -->
     <div class="page-wrapper">
         <main class="hero-section">
             <h1 class="hero-title">
-                Освойте вайбкодинг, чтобы делать свои проекты <span class="highlight">быстрее</span> с помощью AI
+                Освойте вайбкодинг, чтобы делать свои проекты в 10 раз <span class="highlight">быстрее</span> с помощью <p>AI</p>
             </h1>
             <p class="hero-subtitle">
                 Научитесь выстраивать архитектуру проектов изначально под нейросети, интегрировать любые API по документации и выводить готовые продукты на продакшн без хаоса в кодовой базе, галлюцинаций моделей и слепой веры в случайные промты.
             </p>
         </main>
     </div>
+
+    <!-- Секция с ИИ-моделями -->
+    <div class="ai-section">
+        <!-- Карточка "Для кого и Автор" -->
+        <section class="author-card">
+            <div class="author-header">
+                <div class="author-icon">↘</div>
+                <div class="author-content">
+                    <h2>Статья 1</h2>
+                    <p>Если ты только начинаешь работать с <b>ИИ-кодингом</b> и не знаешь, какую модель выбрать — читай дальше. Здесь написано <b>все, что нужно знать о моделях для кодинга</b>простым языком про плюсы, минусы и когда какую модель юзать.</p>
+                </div>
+            </div>
+            <div class="author-footer">
+            </div>
+        </section>
+
+        <!-- Сетка карточек моделей -->
+        <div class="models-grid">
+            <!-- Claude Sonnet -->
+            <article class="model-card">
+                <div class="card-image-wrapper">
+                    <img src="Img/AI-img/Claude-code.png" alt="Claude Sonnet 4.5" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>Claude Sonnet 4.5</h3>
+                    <p class="model-provider">Anthropic</p>
+                    <p class="model-description">
+                        Самая мощная модель для сложных задач. Отлично понимает контекст, пишет чистый код и объясняет решения. 
+                        Подробнее в <a href="https://docs.anthropic.com/claude/docs" target="_blank" class="inline-link">официальной документации<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>.
+                    </p>
+                    <div class="model-pros-cons">
+                        <div class="pros">
+                            <h4>✓ Плюсы:</h4>
+                            <ul>
+                                <li>Идеальна для рефакторинга и архитектуры</li>
+                                <li>Понимает сложные зависимости в коде</li>
+                                <li>Даёт развёрнутые объяснения</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>✗ Минусы:</h4>
+                            <ul>
+                                <li><strong>x6 кредитов</strong> — дорого для простых задач</li>
+                                <li>Иногда слишком многословна</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="model-use-case"><strong>Когда юзать:</strong> Сложные баги, проектирование архитектуры, code review</p>
+                </div>
+            </article>
+
+            <!-- GPT Codex -->
+            <article class="model-card">
+                <div class="card-image-wrapper">
+                    <img src="Img/AI-img/ChatGPT.png" alt="GPT Codex" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>GPT Codex (GPT-4)</h3>
+                    <p class="model-provider">OpenAI</p>
+                    <p class="model-description">
+                        Универсальная модель для повседневных задач. Быстрая, надёжная и хорошо знает популярные фреймворки. 
+                        Изучи <a href="https://platform.openai.com/docs" target="_blank" class="inline-link">API-документацию<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a> для интеграции.
+                    </p>
+                    <div class="model-pros-cons">
+                        <div class="pros">
+                            <h4>✓ Плюсы:</h4>
+                            <ul>
+                                <li>Сбалансированное соотношение цена/качество</li>
+                                <li>Быстро генерирует код</li>
+                                <li>Отличное знание React, Vue, Node.js</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>✗ Минусы:</h4>
+                            <ul>
+                                <li>Может упустить edge cases</li>
+                                <li>Иногда выдаёт устаревший синтаксис</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="model-use-case"><strong>Когда юзать:</strong> Типовые фичи, быстрые фиксы, обучение</p>
+                </div>
+            </article>
+
+            <!-- DeepSeek V3.2 -->
+            <article class="model-card">
+                <div class="card-image-wrapper">
+                    <img src="Img/AI-img/deepseek.png" alt="DeepSeek V3.2" loading="lazy">
+                </div>
+                <div class="card-content">
+                    <h3>DeepSeek V3.2</h3>
+                    <p class="model-provider">DeepSeek AI</p>
+                    <p class="model-description">
+                        Экономичная китайская модель с акцентом на код. Хорошо справляется с алгоритмами и математикой. 
+                        Больше деталей в <a href="https://github.com/deepseek-ai/DeepSeek-Coder" target="_blank" class="inline-link">репозитории GitHub<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>.
+                    </p>
+                    <div class="model-pros-cons">
+                        <div class="pros">
+                            <h4>✓ Плюсы:</h4>
+                            <ul>
+                                <li><strong>x1 кредит</strong> — экономия бюджета</li>
+                                <li>Отлично для алгоритмических задач</li>
+                                <li>Быстрая скорость ответа</li>
+                            </ul>
+                        </div>
+                        <div class="cons">
+                            <h4>✗ Минусы:</h4>
+                            <ul>
+                                <li>Слабее в контексте больших проектов</li>
+                                <li>Менее подробные объяснения</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p class="model-use-case"><strong>Когда юзать:</strong> Простые задачи, скрипты, алгоритмы, эксперименты</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Кнопка переключения темы -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+        <!-- Иконка луны (темная тема) -->
+        <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            <circle cx="18" cy="6" r="0.8"/>
+            <circle cx="20" cy="9" r="0.6"/>
+            <circle cx="16" cy="8" r="0.5"/>
+        </svg>
+        
+        <!-- Иконка солнца (светлая тема) -->
+        <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    </button>
+
+    <script src="Js/theme.js"></script>
+
+<!-- Список всех популряныъ AI моделей -->
+
+<div class="brand-marquee">
+  <div class="marquee-track">
+    <div class="marquee-item"><img src="img/scroll-bar/logo1.png" alt="Hyper"></div>
+    <div class="marquee-item"><img src="img/scroll-bar/logo2.png" alt="Secom"></div>
+    <div class="marquee-item"><img src="img/scroll-bar/logo3.png" alt="Insource"></div>
+    <div class="marquee-item"><img src="img/scroll-bar/logo4.png" alt="Ministry"></div>
+    <div class="marquee-item"><img src="img/scroll-bar/logo5.png" alt="National Agency"></div>
+    
+    <div class="marquee-item"><img src="img/logo1.png" alt="Hyper"></div>
+    <div class="marquee-item"><img src="img/logo2.png" alt="Secom"></div>
+    <div class="marquee-item"><img src="img/logo3.png" alt="Insource"></div>
+    <div class="marquee-item"><img src="img/logo4.png" alt="Ministry"></div>
+    <div class="marquee-item"><img src="img/logo5.png" alt="National Agency"></div>
+  </div>
+</div>
 
 </body>
 </html>
