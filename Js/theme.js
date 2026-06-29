@@ -60,14 +60,14 @@
             const savedTheme = localStorage.getItem(THEME_KEY);
             if (!savedTheme) {
                 if (e.matches) {
-                    body.classList.add(Light_THEME);
+                    body.classList.add(DARK_THEME);
                 } else {
-                    body.classList.remove(Liht_THEME);
+                    body.classList.remove(DARK_THEME);
                 }
             }
         });
     }
-
+    
     // ========================================
     // Инициализация
     // ========================================

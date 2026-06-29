@@ -9,6 +9,7 @@
     
     <!-- Стили -->
     <link rel="stylesheet" href="CSS/main.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Фавиконка -->
     <link rel="icon" id="favicon" href="Img/favicone-black.png" type="image/png">
@@ -72,24 +73,14 @@
     </div>
 
     <!-- Секция с ИИ-моделями -->
-    <div class="ai-section">
+    <div class="ai-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
         <!-- Карточка "Для кого и Автор" -->
         <section class="author-card" id="article-1">
-            <span class="article-badge">Статья 1.1</span>
             <div class="author-header">
                 <div class="author-icon">↘</div>
                 <div class="author-content">
                     <h2>Статья 1</h2>
-                    <p>Эпоха Вайбкодинга изменила правила игры: проектирование архитектуры теперь важнее зубрежки синтаксиса. Нейросети уже пишут код за вас — ваша задача — понимать, <strong>как всё работает</strong> и <strong>как это собрать</strong>.</p>
-                    <p>Синтаксис — это просто инструмент. Сегодня важно уметь:</p>
-                    <ul>
-                        <li>Читать документацию и интегрировать API за 5 минут</li>
-                        <li>Делать архитектурные решения, которые выдержат масштабирование</li>
-                        <li>Понимать DOM и взаимодействие компонентов</li>
-                        <li>Формулировать промты так, чтобы ИИ не галлюцинировал</li>
-                    </ul>
-                    <p>Как сказал один из разработчиков: <blockquote>«Сейчас не тот, кто знает синтаксис, а тот, кто знает, как решить задачу и как попросить об этом ИИ».</blockquote></p>
-                    <p>Вайбкодинг — это про <strong>насмотренность</strong>, <strong>логику</strong> и <strong>умение учиться</strong>. Код — это уже вторично.</p>
+                    <p>Если ты только начинаешь работать с <b>ИИ-кодингом</b> и не знаешь, какую модель выбрать — читай дальше. Здесь написано <b>все, что нужно знать о моделях для кодинга</b>простым языком про плюсы, минусы и когда какую модель юзать.</p>
                 </div>
             </div>
             <div class="author-footer">
@@ -199,31 +190,13 @@
         </div>
     </section>
 
-    <!-- Кнопка переключения темы -->
-    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
-        <!-- Иконка луны (темная тема) -->
-        <svg class="theme-icon moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-            <circle cx="18" cy="6" r="0.8"/>
-            <circle cx="20" cy="9" r="0.6"/>
-            <circle cx="16" cy="8" r="0.5"/>
-        </svg>
-        
-        <!-- Иконка солнца (светлая тема) -->
-        <svg class="theme-icon sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-    </button>
 
-    <script src="Js/theme.js"></script>
+
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 
 <!-- Список всех популряныъ AI моделей -->
 
@@ -251,5 +224,47 @@
   </div>
 </div>
 
+    <!-- Секция: Архитектура проекта под AI -->
+    <section class="article-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+        <div class="article-meta">Статья 1 ч.2</div>
+        <h2 class="article-title">
+           • Архитектура проекта <span class="highlight">под ИИ</span>
+        </h2>
+        <p class="article-subtitle">Как готовить кодовую базу, чтобы нейросеть не сошла с ума.</p>
+        
+        <p>Нейросети моментально тупеют, когда проект разрастается и превращается в «спагетти-код». Чтобы ваш ИИ-помощник оставался гением, нужно строить проект по правилам <b>атомарной модульности</b> и <b>строгой типизации</b>. Чем прозрачнее структура для человека, тем меньше шансов на галлюцинации у модели.</p>
+
+        <div class="article-grid">
+            <!-- Блок 1 -->
+            <div class="mini-block">
+                <h3>Атомарная модульность</h3>
+                <p>Разбивайте код на мелкие, независимые файлы. Если ваш файл превышает <b>300 строк</b> — ИИ начинает терять нить повествования. Скармливайте модели только те модули, которые нужны для конкретной задачи. Используйте принцип <b>Single Responsibility</b>: один файл — одна функция.</p>
+            </div>
+
+            <!-- Блок 2 -->
+            <div class="mini-block">
+                <h3>Комментарии как промпты</h3>
+                <p>Пишите <b>JSDoc</b> или комментарии не только для людей, но и для ИИ. Описывайте входные данные, интерфейсы и ожидаемое поведение функций прямо в коде. Это создает жесткие <b>«рельсы»</b>, по которым модель будет генерировать логику без отклонений от курса.</p>
+            </div>
+
+            <!-- Блок 3 -->
+            <div class="mini-block">
+                <h3>Правило чистого контекста</h3>
+                <p>Не забивайте память модели мусором. Перед тем как просить ИИ написать новую фичу, убедитесь, что в контексте нет <b>устаревших функций</b>, нерелевантных логов или огромных массивов данных. Держите ИИ в курсе только <b>актуальной архитектуры</b>.</p>
+            </div>
+
+            <!-- Блок 4 -->
+            <div class="mini-block">
+                <h3>Интерфейсы и Типизация</h3>
+                <p>Использование <b>TypeScript</b> или четких схем данных — это лучший способ «объяснить» ИИ, как работают ваши объекты. Типы служат <b>живой документацией</b>, которая ограничивает фантазию нейросети и заставляет её следовать правилам вашей системы.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="article-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+        <div class="article-meta">Статья 1 ч.2</div>
+        <h2 class="article-title">
+           • Архитектура проекта <span class="highlight">под ИИ</span>
+        </h2>
 </body>
 </html>
