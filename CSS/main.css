@@ -966,7 +966,7 @@ body.dark-theme .theme-icon.sun {
 
 .marquee-item img:hover {
   filter: grayscale(0) opacity(1);
-  transform: scale(1.1); /* Легкое увеличение при наведении */
+  transform: scale(1.2); /* Легкое увеличение при наведении */
 }
 
 @keyframes scroll-brands {
@@ -1127,12 +1127,340 @@ body.dark-theme .theme-icon.sun {
     font-size: 13px;
 }
 
-/* Убираем черное окно (бейдж) и тени при наведении */
-.article-badge {
-    display: none !important;
+/* ========================================
+   ТУМАННЫЙ ПАЙВОЛЛ С ЗАЩИЩЕННОЙ ИНФО-КАРТОЧКОЙ
+   ======================================== */
+.paywall-columns-wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 30px;
+    width: 100%;
 }
 
-.author-card:hover {
-    box-shadow: none;
-    transform: none;
+@media (max-width: 768px) {
+    .paywall-columns-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Эффект тумана строго на 3 строки */
+.paywall-container {
+    position: relative;
+    max-height: 95px; 
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 20%, rgba(0,0,0,0.25) 55%, transparent 95%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 20%, rgba(0,0,0,0.25) 55%, transparent 95%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Фирменная рамка ТОЛЬКО для правого инфо-блока + Защита от копирования */
+.info-fog-card {
+    border: 1px solid var(--card-border);
+    padding: 20px;
+    border-radius: 12px;
+    background: transparent;
+    box-shadow: 7px 7px 7px var(--card-shadow);
+    transition: transform 0.5s, box-shadow 0.5s;
+    
+    /* Запрещаем выделять и копировать инфу */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Стандартная анимация ховера твоей страницы */
+.info-fog-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--card-shadow-hover);
+}
+
+.info-fog-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+.info-fog-item:last-child {
+    margin-bottom: 0;
+}
+
+.info-fog-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.info-fog-val {
+    color: var(--text-color);
+    font-family: "Roboto Mono", monospace;
+    font-weight: 600;
+}
+
+/* Оверлей стрелки — теперь полностью прозрачный кликабельный слой */
+.paywall-blur-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 5px;
+    z-index: 99;
+    pointer-events: none;
+}
+
+.paywall-arrow-btn {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--text-color);
+    font-size: 54px;
+    font-weight: 900;
+    font-family: system-ui, -apple-system, sans-serif;
+    cursor: pointer;
+    opacity: 0.6;
+    pointer-events: auto;
+    transition: opacity 0.2s, transform 0.2s;
+    line-height: 1;
+    position: relative;
+    z-index: 101;
+}
+
+.paywall-arrow-btn:hover {
+    opacity: 1;
+    transform: translateY(4px);
+}
+
+/* Черно-белая строгая плашка */
+.paywall-offer-card {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+    width: min(370px, 92%);
+    background: var(--bg-color);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+    z-index: 100; /* Самый высокий приоритет при показе */
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.paywall-offer-card.visible {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+.paywall-offer-card h4 {
+    font-family: "Exo 2", sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--header-text);
+}
+
+.paywall-offer-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+/* Полублюрнутая кнопочка с оттенком желтого */
+.btn-want {
+    background: rgba(255, 204, 0, 0.14);
+    border: 1px solid #ffcc00;
+    color: var(--text-color);
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 9px 26px;
+    border-radius: 6px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: background 0.2s;
+}
+
+.btn-want:hover {
+    background: rgba(255, 204, 0, 0.24);
+}
+
+/* ========================================
+   СЕКЦИЯ "ОБО МНЕ" (СТИЛЬ VS CODE И ГИТХАБ)
+   ======================================== */
+.about-section {
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Узкая вертикальная фотка и широкий код */
+    gap: 40px;
+    align-items: stretch;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        grid-template-columns: 1fr; /* На мобилках в одну колонку */
+    }
+}
+
+/* Левая колонка: Фотка с фирменной анимацией */
+.about-avatar-box {
+    position: relative;
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    height: 100%;
+    min-height: 380px;
+    overflow: hidden;
+    box-shadow: 4px 4px 0px var(--card-shadow);
+    transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--line-color);
+}
+
+.about-avatar-box:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--card-shadow-hover);
+}
+
+.about-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Фото красиво заполняет пространство в длину */
+    display: block;
+}
+
+/* Наложение при наведении на фотку */
+.avatar-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.about-avatar-box:hover .avatar-overlay {
+    opacity: 1;
+}
+
+.avatar-overlay span {
+    color: #ffffff;
+    font-family: "Roboto Mono", monospace;
+    font-weight: 700;
+    letter-spacing: 2px;
+    border: 1px solid #ffffff;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+/* Правая колонка: Окно редактора кода */
+.about-code-window {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    background: #1e1e1e; /* Всегда темный сочный фон редактора */
+    box-shadow: 4px 4px 0px var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.code-window-header {
+    background: #181818;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.code-dots {
+    display: flex;
+    gap: 8px;
+    margin-right: 24px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.code-tab {
+    color: #969696;
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+    background: #1e1e1e;
+    padding: 6px 16px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: -13px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: none;
+}
+
+.skip-typing-btn {
+    margin-left: auto;
+    color: #d4d4d4;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.skip-typing-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.code-content {
+    padding: 24px;
+    flex-index: 1;
+    font-family: "Roboto Mono", monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #d4d4d4; /* Стандартный белый текст VS Code */
+    cursor: text; /* Курсор для прописи (I-образный) */
+    min-height: 300px;
+}
+
+/* Раскраска синтаксиса HTML (как в VS Code) */
+.code-tag { color: #569cd6; }       /* Синий для тегов (div, p, h1) */
+.code-attr { color: #9cdcfe; }      /* Светло-синий для атрибутов (class) */
+.code-string { color: #ce9178; }    /* Оранжево-коричневый для строк ("text") */
+.code-text { color: #e5e5e5; }      /* Белый для контента */
+
+/* Каретка (мигающий текстовый курсор) */
+.code-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 17px;
+    background-color: #569cd6;
+    margin-left: 2px;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
 }

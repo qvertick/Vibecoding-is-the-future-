@@ -52,7 +52,7 @@
         
         <div class="header-nav">
             <a href="#">для кого</a>
-            <a href="#">автор</a>
+            <a href="#article-2">автор</a>
             <a href="#article-1">Статья 1</a>
             <a href="#">Статья 2</a>
         </div>
@@ -261,10 +261,87 @@
         </div>
     </section>
 
-    <section class="article-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-        <div class="article-meta">Статья 1 ч.2</div>
-        <h2 class="article-title">
-           • Архитектура проекта <span class="highlight">под ИИ</span>
-        </h2>
+<section class="article-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+        <div class="article-meta">Статья 1 ч.3</div>
+        <h2 class="article-title">• Локальный ИИ на твоем ноуте</h2>
+        
+        <div class="paywall-columns-wrapper">
+            
+            <div class="paywall-container column-left">
+                <p class="article-text">Облачные подписки и сторонние сервера — далеко не единственный путь для современного разработчика. Время, когда для работы с мощными моделями требовался постоянный доступ в сеть и ежемесячная оплата зарубежных сервисов, постепенно уходит в прошлое. Сегодня развернуть полноценного ИИ-помощника можно прямо на своем рабочем ноутбуке.</p>
+                <p class="article-text">Главное преимущество локального подхода — это абсолютная приватность ваших данных. Ни один символ вашего коммерческого кода или приватной базы данных не покинет пределы жесткого диска. Это полностью снимает ограничения безопасности, которые часто накладывают крупные компании на использование публичных ИИ-сервисов вроде ChatGPT или Claude.</p>
+                <p class="article-text">Для реализации этой схемы используется инструмент Ollama — легковесный и невероятно эффективный софт, позволяющий запускать тяжелые LLM-модели буквально одной командой в терминале. Вы получаете полную независимость от лимитов, очередей на серверах и проблем с оплатой подписок.</p>
+            </div>
+
+            <div class="paywall-container column-right">
+                <div class="info-fog-block">
+                    <div class="info-fog-item">
+                        <span class="info-fog-label">Рекомендуемые модели:</span>
+                        <span class="info-fog-val">Qwen 2.5 Coder, Llama 3.1</span>
+                    </div>
+                    <div class="info-fog-item">
+                        <span class="info-fog-label">Минимальные требования:</span>
+                        <span class="info-fog-val">16GB RAM / Apple M-чип</span>
+                    </div>
+                    <div class="info-fog-item">
+                        <span class="info-fog-label">Скорость генерации:</span>
+                        <span class="info-fog-val">~35 токенов в секунду</span>
+                    </div>
+                    <div class="info-fog-item">
+                        <span class="info-fog-label">Интеграция с IDE:</span>
+                        <span class="info-fog-val" >Cursor / VS Code (Local API)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="paywall-blur-overlay" id="paywallOverlay">
+                <button class="paywall-arrow-btn" id="paywallArrow" aria-label="Показать предложение">↓</button>
+            </div>
+
+            <div class="paywall-offer-card" id="paywallOffer" style="display: none;">
+                <h4>Хочешь узнать много нового?</h4>
+                <p>Ознакомься с ценами!</p>
+                <button class="btn-want">Хочу!</button>
+            </div>
+                                     <p id="article-2"></p> <!--это чтоб якорь для навигации работал корректно-->
+        </div>
+    </section>
+
+    <!-- -------------------------------Блок "Автор"-------------------------------------------- -->
+
+<section class="about-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+            <div class="article-meta">Разработчик</div>
+            <h2 class="article-title">• Автор проекта</h2>
+            
+            <div class="about-container">
+                <div class="about-avatar-wrapper">
+                    <a href="https://github.com/qvertick" target="_blank" class="about-github-link" title="Мой GitHub">
+                        <div class="about-avatar-box">
+                            <img src="Img/info/github.png" alt="фотка моего гит-хаба" class="about-img">
+                            <div class="avatar-overlay">
+                                <span>GITHUB</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="about-code-window">
+                    <div class="code-window-header">
+                        <div class="code-dots">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                        </div>
+                        <div class="code-tab">i_use_Arch_<b>btw</b></div>
+                        <button class="skip-typing-btn" id="skipTypingBtn" type="button">пропустить анимацию?</button>
+                    </div>
+                    <div class="code-content">
+                        <div class="typing-code" id="typingCode"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <script src="Js/theme.js"></script>
 </body>
 </html>
