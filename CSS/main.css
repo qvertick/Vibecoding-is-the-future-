@@ -64,7 +64,7 @@ body.dark-theme {
   }
 }/* Оранжево-жёлтое выделение текста */
 ::selection {
-    background-color: #f0f63f;
+    background-color: #faff69;
     color: #000;
 }
 
@@ -1276,24 +1276,42 @@ body.dark-theme .theme-icon.sun {
     margin-bottom: 16px;
 }
 
-/* Полублюрнутая кнопочка с оттенком желтого */
-.btn-want {
-    background: rgba(255, 204, 0, 0.14);
-    border: 1px solid #ffcc00;
-    color: var(--text-color);
-    font-family: inherit;
-    font-weight: 700;
-    font-size: 13px;
-    padding: 9px 26px;
-    border-radius: 6px;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    transition: background 0.2s;
+/* Базовые стили размытой плашки */
+#paywallOffer {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    z-index: 999;
+    background: rgba(255, 255, 255, 0.4) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+    transition: opacity 0.3s ease-in-out;
 }
 
-.btn-want:hover {
-    background: rgba(255, 204, 0, 0.24);
+#paywallOffer.visible {
+    opacity: 1;
+}
+
+#paywallOffer button,
+#paywallOffer .paywall-btn {
+    background: rgba(255, 255, 255, 0.6) !important;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: #1d1d1f;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#paywallOffer button:hover,
+#paywallOffer .paywall-btn:hover {
+    background: rgba(255, 255, 255, 0.9) !important;
+    transform: scale(1.03);
 }
 
 /* ========================================
@@ -1435,7 +1453,7 @@ body.dark-theme .theme-icon.sun {
 
 .code-content {
     padding: 24px;
-    flex-index: 1;
+    flex-grow: 1;
     font-family: "Roboto Mono", monospace;
     font-size: 15px;
     line-height: 1.6;
@@ -1463,4 +1481,23 @@ body.dark-theme .theme-icon.sun {
 
 @keyframes blink {
     50% { opacity: 0; }
+}
+
+#paywallOffer {
+    display: none;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    /* Твои базовые стили плашки */
+}
+
+#paywallOffer.visible {
+    opacity: 1;
+}
+
+/* Класс, который добавляет JS для растягивания на всю ширину контейнера */
+#paywallOffer.active {
+    width: 100%;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
 }
