@@ -64,7 +64,7 @@ body.dark-theme {
   }
 }/* Оранжево-жёлтое выделение текста */
 ::selection {
-    background-color: #faff69;
+    background-color: #f9ff49;
     color: #000;
 }
 
@@ -99,8 +99,19 @@ body {
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease;
     -webkit-font-smoothing: antialiased;
+    padding-left: 120px;
 }
-/* ФИКСИРОВАННАЯ ШАПКА С БЛЮРОМ */
+
+/* Canvas Git-граф слева */
+#bg-lines-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 120px !important;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: auto;
+}/* ФИКСИРОВАННАЯ ШАПКА С БЛЮРОМ */
 #header {
     position: sticky;
     top: 0;
@@ -172,6 +183,111 @@ body {
 .header-nav a:hover {
     color: var(--nav-text-hover);
 }
+
+/* ========================================
+   Стили выпадающего меню "жидкая капля"
+   ======================================== */
+#header {
+    overflow: visible !important;
+}
+
+.streamline-dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.dropdown-trigger {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dropdown-arrow {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.streamline-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.sub-menu {
+    position: absolute;
+    top: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 24px;
+    background: var(--header-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 0 0 16px 16px;
+    border: 1.4px solid var(--line-color);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 10px;
+    white-space: nowrap;
+    z-index: 1001;
+}
+
+.sub-menu a {
+    color: var(--nav-text);
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.sub-menu a:hover {
+    color: var(--nav-text-hover);
+}
+
+.sub-menu::before,
+.sub-menu::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    top: -1px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.35s;
+}
+
+.sub-menu::before {
+    left: -20px;
+    border-radius: 0 20px 0 0;
+    box-shadow: 10px -10px 0 0 var(--header-bg);
+}
+
+.sub-menu::after {
+    right: -20px;
+    border-radius: 20px 0 0 0;
+    box-shadow: -10px -10px 0 0 var(--header-bg);
+}
+
+.streamline-dropdown.active .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.streamline-dropdown.active .sub-menu::before,
+.streamline-dropdown.active .sub-menu::after {
+    opacity: 1;
+}
+
 /* СЕКЦИЯ С ОГРОМНЫМ ЗАГОЛОВКОМ */
 .page-wrapper {
     display: flex;
@@ -186,8 +302,32 @@ body {
 }
 
 /* Огромный жирный заголовок */
-.hero-title {
-    font-size: 58px;
+.hero-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.hero-badge .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.hero-title {    font-size: 58px;
     font-weight: 500;
     line-height: 0.85;
     letter-spacing: 0px;
@@ -222,8 +362,8 @@ body {
     transform: rotate(-2deg);
     transform-origin: left center;
     transition: background-color 0.4s ease;
-}
-/* Аккуратный текст описания под заголовком */
+    display: none; /* Убрали полоску */
+}/* Аккуратный текст описания под заголовком */
 .hero-subtitle {
     font-size: 18px;
     font-weight: 400;
@@ -235,140 +375,46 @@ body {
 }
 
 /* ========================================
-   Декоративная фоновая линия
-   ======================================== */
-.bg-line-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-}
-
-.bg-line {
-    width: 100%;
-    height: 100%;
-    color: var(--line-color);
-    transition: color 0.4s ease;
-}
-/* ========================================
-   Кнопка переключения темы
-   ======================================== */
-
-
-.theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px var(--button-shadow);
-}
-
-.theme-toggle:active {
-    transform: scale(0.95);
-}
-
-/* Иконки темы внутри кнопки */
-.theme-icon {
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* По умолчанию (светлая тема) */
-.theme-icon.moon {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.theme-icon.sun {
-    opacity: 0;
-    transform: rotate(180deg);
-}
-
-/* В темной теме */
-body.dark-theme .theme-icon.moon {
-    opacity: 0;
-    transform: rotate(-180deg);
-}
-
-body.dark-theme .theme-icon.sun {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-/* АДАПТИВНОСТЬ: На смартфонах убираем её из угла, чтобы она не перекрывала текст */
-@media (max-width: 768px) {
-    .theme-toggle {
-        position: static; /* Становится обычным блоком */
-        margin: 40px auto; /* Центрируется в самом низу страницы */
-        width: 55px;
-        height: 55px;
-    }
-    
-    .theme-icon {
-        width: 26px;
-        height: 26px;
-    }
-}
-
-.theme-toggle:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px var(--button-shadow);
-}
-
-.theme-toggle:active {
-    transform: scale(0.95);
-}
-
-/* Иконки темы */
-.theme-icon {
-    width: 28px;
-    height: 28px;
-    position: absolute;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* По умолчанию показываем луну (для светлой темы) */
-.theme-icon.moon {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-.theme-icon.sun {
-    opacity: 0;
-    transform: rotate(180deg);
-}
-
-/* В темной теме показываем солнце */
-body.dark-theme .theme-icon.moon {
-    opacity: 0;
-    transform: rotate(-180deg);
-}
-
-body.dark-theme .theme-icon.sun {
-    opacity: 1;
-    transform: rotate(0deg);
-}
-
-@media (max-width: 768px) {
-    .theme-toggle {
-        position: static; /* Кнопка становится обычным элементом в потоке */
-        margin: 40px auto; /* Центрируем её с красивыми отступами сверху и снизу */
-        width: 50px;
-        height: 50px;
-    }
-    
-    .theme-icon {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-/* ========================================
    Секция с ИИ-моделями
    ======================================== */
+.brand-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0;
+    background: transparent;
+    position: relative;
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+.marquee-item {
+    flex-shrink: 0;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee-item img {
+    height: 50px;
+    width: auto;
+    filter: grayscale(1) opacity(0.6);
+    transition: all 0.3s ease;
+}
+
+.marquee-item img:hover {
+    filter: grayscale(0) opacity(1);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.33%); }
+}
+
 .ai-section {
     max-width: 1200px;
     margin: 80px auto;
@@ -527,190 +573,23 @@ body.dark-theme .theme-icon.sun {
    Карточка модели
    ======================================== */
 .model-card {
-    background: var(--card-bg);
-    border: 1px solid transparent; /* ПРАВИЛО 3: Рамка есть всегда, меняем только цвет */
+    background: var(--bg-color);
+    border: 1px solid var(--card-border);
     border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out; /* ПРАВИЛО 4: Плавность */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
     display: flex;
     flex-direction: column;
     position: relative;
     cursor: default;
 }
 
-/* ПРАВИЛО 2: Все эффекты только через ховер родителя (.model-card) */
 .model-card:hover {
-    transform: translateY(-8px); /* Мягкое поднятие */
-    box-shadow: 0 12px 30px var(--card-shadow-hover);
-    border-color: var(--text-secondary); /* Проявление рамки без изменения размеров */
-}
-
-/* ========================================
-   Изображение модели
-   ======================================== */
-.card-image-wrapper {
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    background-color: var(--text-secondary);
-    opacity: 0.9;
-    transition: opacity 0.3s ease-out;
-    pointer-events: none;
-    border-bottom: none; /* Гарантированно убираем линию */
-}
-
-.model-card:hover .card-image-wrapper {
-    opacity: 1;
-}
-
-.card-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease-out;
-    display: block; /* Убирает микро-зазор под картинкой */
-}
-
-.model-card:hover .card-image-wrapper img {
-    transform: scale(1.05);
-}
-
-/* ========================================
-   Контент карточки
-   ======================================== */
-.card-content {
-    padding: 20px 24px 24px 24px; /* Уменьшен верхний padding (20px вместо 24px) */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    pointer-events: none; 
-}
-/* ПРАВИЛО 5: Ссылки внутри должны быть кликабельны, возвращаем им события */
-.card-content a {
-    pointer-events: auto;
-}
-
-.card-content h3 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--text-color);
-}
-
-.model-provider {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 16px;
-    font-weight: 500;
-}
-
-.model-description {
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-}
-
-/* ========================================
-   Инлайновые ссылки
-   ======================================== */
-.inline-link {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-    border-bottom: 1px solid transparent; /* ПРАВИЛО 3: Фиксация для ссылок */
-    transition: border-color 0.2s ease-out, opacity 0.2s ease-out;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-/* ПРАВИЛО 2: Ссылка реагирует, когда мы навели на КАРТОЧКУ или на саму ссылку */
-.model-card:hover .inline-link {
-    border-bottom-color: var(--text-color);
-}
-
-.inline-link:hover {
-    opacity: 0.6;
-}
-
-.inline-link svg {
-    transition: transform 0.2s ease-out;
-}
-
-.inline-link:hover svg {
-    transform: translate(2px, -2px);
-}
-
-/* ========================================
-   Плюсы и минусы
-   ======================================== */
-.model-pros-cons {
-    margin: 20px 0;
-}
-
-.pros,
-.cons {
-    margin-bottom: 16px;
-}
-
-.pros h4,
-.cons h4 {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--text-color);
-}
-
-.pros ul,
-.cons ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-.pros li,
-.cons li {
-    font-size: 13px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    padding-left: 20px;
-    position: relative;
-    margin-bottom: 6px;
-}
-
-.pros li::before {
-    content: "•";
-    position: absolute;
-    left: 6px;
-    color: var(--text-color);
-}
-
-.cons li::before {
-    content: "•";
-    position: absolute;
-    left: 6px;
-    color: var(--text-secondary);
-}
-
-/* ========================================
-   Use case
-   ======================================== */
-.model-use-case {
-    font-size: 13px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border-color);
-    color: var(--text-color);
-    margin-top: auto;
-}
-
-.model-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
     box-shadow: 0 12px 30px var(--card-shadow-hover);
     border-color: var(--text-secondary);
 }
+
 /* ========================================
    Изображение модели
    ======================================== */
@@ -718,7 +597,7 @@ body.dark-theme .theme-icon.sun {
     width: 100%;
     height: 140px;
     overflow: hidden;
-    background-color: transparent; /* Убрали серый фон */
+    background-color: transparent;
     transition: opacity 0.3s ease-out;
     pointer-events: none;
 }
@@ -734,20 +613,8 @@ body.dark-theme .theme-icon.sun {
     object-position: center;
     transition: transform 0.3s ease-out;
     display: block;
-    filter: none; /* Убираем любые фильтры, которые могли давать серый оттенок */
 }
 
-.model-card:hover .card-image-wrapper {
-    opacity: 1;
-}
-
-.card-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: transform 0.3s ease;
-}
 .model-card:hover .card-image-wrapper img {
     transform: scale(1.05);
 }
@@ -760,6 +627,10 @@ body.dark-theme .theme-icon.sun {
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.card-content a {
+    pointer-events: auto;
 }
 
 .card-content h3 {
@@ -868,7 +739,7 @@ body.dark-theme .theme-icon.sun {
 .model-use-case {
     margin-top: auto;
     padding-top: 16px;
-    border-top: 1px solid var(--text-secondary);
+    border-top: 1px solid var(--card-border);
     font-size: 13px;
     line-height: 1.6;
     color: var(--text-secondary);
@@ -882,104 +753,89 @@ body.dark-theme .theme-icon.sun {
 /* ========================================
    Адаптивность для мобильных
    ======================================== */
+.for-whom {
+    max-width: 1200px;
+    margin: 120px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.for-whom h2 {
+    font-size: 42px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    font-family: "Exo 2", sans-serif;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-bottom: 60px;
+}
+
+.targets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.target-card {
+    background: var(--bg-color);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: left;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.target-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px var(--card-shadow-hover);
+}
+
+.card-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+.target-card h3 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.target-card p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.for-whom-final-text {
+    font-size: 20px;
+    max-width: 800px;
+    margin: 80px auto 0;
+    line-height: 1.6;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
 @media (max-width: 768px) {
-    .ai-section {
-        margin: 50px auto;
+    .hero-badge {
+        font-size: 9px;
+        padding: 0 10px;
     }
-
-    .author-header {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-    }
-
-    .author-icon {
-        font-size: 40px;
-    }
-
-    .models-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .card-image-wrapper {
-        height: 150px;
-    }
-
-    .card-content {
-        padding: 20px;
+    .for-whom h2 {
+        font-size: 32px;
     }
 }
-/* В доработке */
-
-.brand-marquee {
-  overflow: hidden;
-  width: 100%;
-  background: var(--bg-color);
-  padding: 40px 0;
-  margin-top: 20px;
-  display: flex;
-  position: relative;
-}
-
-/* Эффект затухания по краям (из угла в угол) */
-.brand-marquee::before,
-.brand-marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 150px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.brand-marquee::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-color), transparent);
-}
-
-.brand-marquee::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-color), transparent);
-}
-
-.marquee-track {
-  display: flex;
-  align-items: center;
-  gap: 100px; /* Увеличенный отступ */
-  width: max-content;
-  animation: scroll-brands 40s linear infinite;
-}
-
-.marquee-item {
-  flex-shrink: 0;
-}
-
-.marquee-item img {
-  height: 80px; /* Еще чуть-чуть увеличил (было 68px) */
-  width: auto;
-  object-fit: contain;
-  filter: grayscale(1) opacity(0.5);
-  transition: all 0.4s ease;
-}
-
-.marquee-item img:hover {
-  filter: grayscale(0) opacity(1);
-  transform: scale(1.2); /* Легкое увеличение при наведении */
-}
-
-@keyframes scroll-brands {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-100% / 3)); /* Сдвиг ровно на одну секцию из трех */
-  }
-}
-/* ========================================
-   Секция статьи (Архитектура)
-   ======================================== */
 .article-section {
     max-width: 1100px;
     margin: 86px auto 100px auto;
@@ -1457,11 +1313,85 @@ body.dark-theme .theme-icon.sun {
     font-family: "Roboto Mono", monospace;
     font-size: 15px;
     line-height: 1.6;
-    color: #d4d4d4; /* Стандартный белый текст VS Code */
-    cursor: text; /* Курсор для прописи (I-образный) */
-    min-height: 300px;
+    color: #e0e0e0;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
 }
 
+/* ========================================
+   Ветвящиеся линии timeline слева
+   ======================================== */
+.page-timeline {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.timeline-group {
+    cursor: pointer;
+}
+
+.timeline-hitzone {
+    cursor: pointer;
+    pointer-events: stroke;
+}
+
+.timeline-line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                opacity 0.5s ease;
+}
+
+.timeline-group:hover .timeline-line {
+    stroke-width: 12 !important;
+    filter: drop-shadow(0 0 12px rgba(251, 147, 60, 0.7)) 
+            drop-shadow(0 0 24px rgba(251, 147, 60, 0.4))
+            drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    animation: lineGlow 0.6s ease-in-out;
+}
+
+.timeline-dot {
+    transition: r 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+                filter 0.5s ease;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.15));
+}
+
+.timeline-group:hover .timeline-dot {
+    r: 12;
+    filter: drop-shadow(0 0 12px rgba(251, 147, 60, 0.6)) 
+            drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* Анимация свечения */
+@keyframes lineGlow {
+    0% {
+        filter: drop-shadow(0 0 4px rgba(251, 147, 60, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(251, 147, 60, 0.8)) 
+                drop-shadow(0 0 30px rgba(251, 147, 60, 0.5))
+                drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    }
+    100% {
+        filter: drop-shadow(0 0 12px rgba(251, 147, 60, 0.7)) 
+                drop-shadow(0 0 24px rgba(251, 147, 60, 0.4))
+                drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    }
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .page-timeline {
+        left: -20px;
+    }
+}
 /* Раскраска синтаксиса HTML (как в VS Code) */
 .code-tag { color: #569cd6; }       /* Синий для тегов (div, p, h1) */
 .code-attr { color: #9cdcfe; }      /* Светло-синий для атрибутов (class) */
@@ -1500,4 +1430,157 @@ body.dark-theme .theme-icon.sun {
     left: 0;
     right: 0;
     box-sizing: border-box;
+}
+
+.offer-subtitle {
+    opacity: 0.59;
+    margin-top: 5px;
+}
+
+/* ========================================
+   Секция "Для кого этот проект"
+   ======================================== */
+.for-whom {
+    max-width: 1100px;
+    margin: 100px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.for-whom h2 {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.1;
+    color: var(--header-text);
+    margin-bottom: 16px;
+    font-family: "Exo 2", sans-serif;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 40px;
+}
+
+.targets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.target-card {
+    padding: 32px;
+    border-radius: 12px;
+    background: var(--header-bg);
+    border: 1px solid var(--line-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: var(--card-shadow);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.target-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: var(--text-secondary);
+    background: rgba(var(--header-bg-rgb, 247, 247, 247), 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.target-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--highlight-line), transparent);
+    border-radius: 12px 12px 0 0;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.target-card:hover::before {
+    opacity: 1;
+}
+
+.card-badge {
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    color: var(--text-secondary);
+    border: 1px solid var(--line-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.target-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 12px;
+}
+
+.target-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* ========================================
+   Глич эффект - хаотичное движение букв
+   ======================================== */
+.glitch-word {
+    display: inline-block;
+    position: relative;
+}
+
+.letter-glitch {
+    display: inline-block;
+    position: relative;
+    animation: letter-wiggle 2s ease-in-out infinite;
+    animation-delay: calc(var(--letter-index, 0) * 0.08s);
+}
+
+@keyframes letter-wiggle {
+    0%, 100% {
+        transform: translateY(0px) translateX(0px) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translateY(-2px) translateX(1px) rotate(-0.5deg);
+        opacity: 0.95;
+    }
+    50% {
+        transform: translateY(2px) translateX(-1px) rotate(0.5deg);
+        opacity: 1;
+    }
+    75% {
+        transform: translateY(-1px) translateX(-1px) rotate(-0.3deg);
+        opacity: 0.98;
+    }
+}
+
+/* ========================================
+   Заключительный текст
+   ======================================== */
+.for-whom-final-text {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--text-color);
+    max-width: 850px;
+    margin: 60px auto 0;
+    font-weight: 500;
+    text-align: center;
 }

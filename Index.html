@@ -42,6 +42,11 @@
     </script>
 </head>
 <body>
+    <!-- Canvas Git-стиля интерактивные линии слева -->
+    <canvas id="bg-lines-canvas" style="position: fixed; top: 0; left: 0; width: 120px !important; height: 100vh; z-index: 1; pointer-events: auto;"></canvas>
+
+
+
     <!-- ========================================
          Шапка сайта
          ======================================== -->
@@ -51,9 +56,15 @@
         </a>
         
         <div class="header-nav">
-            <a href="#">для кого</a>
+            <a href="#">для кого?</a>
             <a href="#article-2">автор</a>
-            <a href="#article-1">Статья 1</a>
+            <div class="streamline-dropdown">
+                <a href="#" class="dropdown-trigger">Статья 1 <span class="dropdown-arrow">∨</span></a>
+                <div class="sub-menu">
+                    <a href="#article-3">Статья 1 ч.2</a>
+                    <a href="#article-4">Статья 1 ч.3</a>
+                </div>
+            </div>
             <a href="#">Статья 2</a>
         </div>
     </header>
@@ -63,14 +74,52 @@
          ======================================== -->
     <div class="page-wrapper">
         <main class="hero-section">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="200">
+                <span class="dot"></span>
+                АВТОРСКАЯ ПРАКТИЧЕСКАЯ СИСТЕМА ОТ ДЕЙСТВУЮЩЕГО FRONT-END РАЗРАБОТЧИКА. ПРОЕКТИРОВАНИЕ АРХИТЕКТУРЫ, АВТОМАТИЗАЦИЯ ПРОЦЕССОВ И ПОЛНЫЙ ЦИКЛ СОЗДАНИЯ IT-ПРОДУКТОВ С ПОМОЩЬЮ AI.
+            </div>
             <h1 class="hero-title">
-                Освойте вайбкодинг, чтобы делать свои проекты в 10 раз <span class="highlight">быстрее</span> с помощью <p>AI</p>
+                Освойте <span class="glitch-word"></span><span class="glitch-word">вайбкодинг</span>, чтобы делать свои проекты в 10 раз <span class="highlight glitch-word">быстрее</span> с помощью <p><span class="glitch-word">AI</span></p>
             </h1>
             <p class="hero-subtitle">
                 Научитесь выстраивать архитектуру проектов изначально под нейросети, интегрировать любые API по документации и выводить готовые продукты на продакшн без хаоса в кодовой базе, галлюцинаций моделей и слепой веры в случайные промты.
             </p>
         </main>
     </div>
+
+    <!-- Секция: Для кого этот проект -->
+    <section id="for-whom" class="for-whom" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+        <h2>Кому же это <u><span class="glitch-word">надо?</span></u></h2>
+        <p class="section-subtitle">Выбирай свой <span class="glitch-word">левел:</span></p>
+        
+        <div class="targets-grid">
+            <!-- Level 0: Новичкам и дизайнерам -->
+            <article class="target-card">
+                <span class="card-badge">Level 0</span>
+                <h3><span class="glitch-word">Новичкам</span> и дизайнерам</h3>
+                <p>Тем, кто хочет перестать бояться кода, научиться быстро набрасывать рабочие прототипы своих идей и использовать ИИ как личного ментора, который объясняет каждую строчку без душной теории.</p>
+            </article>
+
+            <!-- Level 1: Практикующим разрабам -->
+            <article class="target-card">
+                <span class="card-badge">Level 1</span>
+                <h3><span class="glitch-word">Практикующим</span> разрабам</h3>
+                <p>Фронтендерам и бэкендерам, которые устали писать однотипный бойлерплейт вручную. Научим выжимать максимум из контекста моделей, правильно разбивать проект на модули и кодить в 10 раз быстрее через режим Auto.</p>
+            </article>
+
+            <!-- Level 2: Инди-хакерам и стартаперам -->
+            <article class="target-card">
+                <span class="card-badge">Level 2</span>
+                <h3><span class="glitch-word">Инди-хакерам</span> и стартаперам</h3>
+                <p>Для тех, кто пилит свои продукты в соло. Как собрать готовый к продакшну MVP, прикрутить API, настроить стили и выкатить проект на хостинг за одни выходные, пока конкуренты пишут ТЗ.</p>
+            </article>
+        </div>
+
+        <!-- Итоговый текст -->
+        <p class="for-whom-final-text">
+            На самом деле это нужно <span class="glitch-word">всем</span>, в 2026 году — это не опция, это <span class="glitch-word">необходимость</span>. Вайб-кодинг — это не просто техника, это <span class="glitch-word">философия</span> того, как разработчики работают сейчас и будут работать дальше.
+        </p>
+    </section>
 
     <!-- Секция с ИИ-моделями -->
     <div class="ai-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
@@ -228,7 +277,7 @@
     <section class="article-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
         <div class="article-meta">Статья 1 ч.2</div>
         <h2 class="article-title">
-           • Архитектура проекта <span class="highlight">под ИИ</span>
+           • <span class="glitch-word">Архитектура</span> проекта <span class="highlight">под ИИ</span>
         </h2>
         <p class="article-subtitle">Как готовить кодовую базу, чтобы нейросеть не сошла с ума.</p>
         
@@ -258,12 +307,15 @@
                 <h3>Интерфейсы и Типизация</h3>
                 <p>Использование <b>TypeScript</b> или четких схем данных — это лучший способ «объяснить» ИИ, как работают ваши объекты. Типы служат <b>живой документацией</b>, которая ограничивает фантазию нейросети и заставляет её следовать правилам вашей системы.</p>
             </div>
+                                <p id="article-4"></p>
         </div>
     </section>
 
+
+
 <section class="article-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-        <div class="article-meta">Статья 1 ч.3</div>
-        <h2 class="article-title">• Локальный ИИ на твоем ноуте</h2>
+        <div class="article-meta" id="article-3">Статья 1 ч.3</div>
+        <h2 class="article-title">• <span class="glitch-word">Локальный</span> <span class="glitch-word">ИИ</span> на твоем ноуте</h2>
         
         <div class="paywall-columns-wrapper">
             
@@ -302,16 +354,14 @@
                 <h4>Хочешь узнать много нового?</h4>
                 <p>Ознакомься с ценами!</p>
                 <button class="btn-want">Хочу!</button>
+                <p class="offer-subtitle">Стоимость за доступ — не кусается <3</p>
             </div>
-                                     <p id="article-2"></p> <!--это чтоб якорь для навигации работал корректно-->
         </div>
     </section>
 
-    <!-- -------------------------------Блок "Автор"-------------------------------------------- -->
-
-<section class="about-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+<section class="about-section" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true" id="article-2">
             <div class="article-meta">Разработчик</div>
-            <h2 class="article-title">• Автор проекта</h2>
+            <h2 class="article-title">• <span class="glitch-word">Автор</span> проекта</h2>
             
             <div class="about-container">
                 <div class="about-avatar-wrapper">
@@ -344,8 +394,38 @@
 
     <script src="Js/theme.js"></script>
 
-<div class="">Статья 2</div>
-   
+    <!-- Секция: Для кого этот проект -->
+    <section id="for-whom" class="for-whom" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+        <h2>Кому же это <u><span class="glitch-word">надо?</span></u></h2>
+        <p class="section-subtitle">Выбирай свой <span class="glitch-word">левел:</span></p>
+        
+        <div class="targets-grid">
+            <!-- Level 0: Новичкам и дизайнерам -->
+            <article class="target-card">
+                <span class="card-badge">Level 0</span>
+                <h3><span class="glitch-word">Новичкам</span> и дизайнерам</h3>
+                <p>Тем, кто хочет перестать бояться кода, научиться быстро набрасывать рабочие прототипы своих идей и использовать ИИ как личного ментора, который объясняет каждую строчку без душной теории.</p>
+            </article>
 
+            <!-- Level 1: Практикующим разрабам -->
+            <article class="target-card">
+                <span class="card-badge">Level 1</span>
+                <h3><span class="glitch-word">Практикующим</span> разрабам</h3>
+                <p>Фронтендерам и бэкендерам, которые устали писать однотипный бойлерплейт вручную. Научим выжимать максимум из контекста моделей, правильно разбивать проект на модули и кодить в 10 раз быстрее через режим Auto.</p>
+            </article>
+
+            <!-- Level 2: Инди-хакерам и стартаперам -->
+            <article class="target-card">
+                <span class="card-badge">Level 2</span>
+                <h3><span class="glitch-word">Инди-хакерам</span> и стартаперам</h3>
+                <p>Для тех, кто пилит свои продукты в соло. Как собрать готовый к продакшну MVP, прикрутить API, настроить стили и выкатить проект на хостинг за одни выходные, пока конкуренты пишут ТЗ.</p>
+            </article>
+        </div>
+
+        <!-- Итоговый текст -->
+        <p class="for-whom-final-text">
+            На самом деле это нужно <span class="glitch-word">всем</span>, в 2026 году — это не опция, это <span class="glitch-word">необходимость</span>. Вайб-кодинг — это не просто техника, это <span class="glitch-word">философия</span> того, как разработчики работают сейчас и будут работать дальше.
+        </p>
+    </section>
 </body>
 </html>
